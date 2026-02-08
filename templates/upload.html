@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="upload-page">
+    <h1><i class="fas fa-cloud-upload-alt"></i> Upload File</h1>
+    
+    <div class="upload-box">
+        <form action="/upload" method="POST" enctype="multipart/form-data" id="uploadForm">
+            <div class="drop-area" id="dropArea">
+                <i class="fas fa-file-upload"></i>
+                <h3>Drag & Drop Files Here</h3>
+                <p>or</p>
+                <input type="file" name="file" id="fileInput" required>
+                <label for="fileInput" class="btn btn-browse">
+                    <i class="fas fa-folder-open"></i> Browse Files
+                </label>
+                <div class="file-info" id="fileInfo">
+                    No file selected
+                </div>
+            </div>
+
+            <div class="file-types">
+                <p><strong>Allowed File Types:</strong></p>
+                <div class="file-type-tags">
+                    <span class="tag">.txt</span>
+                    <span class="tag">.pdf</span>
+                    <span class="tag">.jpg/.png</span>
+                    <span class="tag">.doc/.docx</span>
+                    <span class="tag">.xls/.xlsx</span>
+                    <span class="tag">.mp3/.mp4</span>
+                    <span class="tag">.zip/.rar</span>
+                </div>
+                <p><strong>Max File Size:</strong> 10 MB</p>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-upload">
+                <i class="fas fa-cloud-upload-alt"></i> Upload to Cloud Storage
+            </button>
+        </form>
+    </div>
+
+    <div class="upload-instructions">
+        <h3><i class="fas fa-question-circle"></i> How to Upload:</h3>
+        <ol>
+            <li>Click "Browse Files" or drag & drop a file</li>
+            <li>Select any file from your computer (max 10MB)</li>
+            <li>Click "Upload to Cloud Storage" button</li>
+            <li>Check "Files" page to see your uploaded files</li>
+        </ol>
+    </div>
+</div>
+{% endblock %}
