@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="files-page">
+    <h1><i class="fas fa-folder-open"></i> My Files</h1>
+    
+    {% if files %}
+    <div class="file-stats">
+        <p><i class="fas fa-chart-bar"></i> Total Files: <strong>{{ files|length }}</strong></p>
+    </div>
+
+    <div class="files-table">
+        <table>
+            <thead>
+                <tr>
+                    <th>File Name</th>
+                    <th>Size</th>
+                    <th>Uploaded</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for file in files %}
+                <tr>
+                    <td class="file-name">
+                        <i class="fas fa-file"></i>
+                        {{ file.display_name }}
+                    </td>
+                    <td class="file-size">
+                        {% if file.size > 1048576 %}
+                            {{ "%.1f"|format(file.size/1048576) }} MB
+                        {% elif file.size > 1024 %}
+                            {{ "%.1f"|format(file.size/1024) }} KB
+                        {% else %}
+                            {{ file.size }} B
+                        {% endif %}
+                    </td>
+                    <td class="file-date">{{ file.created }}</td>
+                    <td class="file-actions">
+                        <a href="{{ file.url }}" class="btn btn-download" download>
+                            <i class="fas fa-download"></i> Download
+                        </a>
+                        <a href="/delete/{{ file.filename }}" 
+                           class="btn btn-delete" 
+                           onclick="return confirm('Delete this file?')">
+                            <i class="fas fa-trash"></i> Delete
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="no-files">
+        <i class="fas fa-folder-open fa-4x"></i>
+        <h3>No Files Uploaded Yet</h3>
+        <p>Upload your first file to get started!</p>
+        <a href="/upload" class="btn btn-primary">
+            <i class="fas fa-upload"></i> Upload Files
+        </a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
