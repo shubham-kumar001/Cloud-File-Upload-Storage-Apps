@@ -1,2 +1,21 @@
+# ============================================
+# CLOUD FILE UPLOAD STORAGE APPS
+# Python Dependencies
+# ============================================
+
+# Core Framework
 Flask==2.3.3
-werkzeug==2.3.7
+
+# File Handling
+Werkzeug==2.3.7
+
+# Environment Variables (optional)
+python-dotenv==1.0.0
+
+# For production deployment
+gunicorn==21.2.0
+
+# ============================================
+# Installation command:
+# pip install -r requirements.txt
+# ============================================
